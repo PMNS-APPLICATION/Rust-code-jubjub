@@ -1,0 +1,69 @@
+[package]
+description = "Implementation of the pmns arithmetic on the Jubjub elliptic curve group"
+homepage = "https://github.com/zkcrypto/jubjub"
+license = "MIT/Apache-2.0"
+name = "jubjub"
+version = "0.10.0"
+edition = "2021"
+
+[[bin]]
+name = "test_cycle"
+path = "src/bin/cycle.rs"
+
+[[bin]]
+name = "test_time"
+path = "src/bin/time.rs"
+
+[[bin]]
+name = "test_arithm_cycle"
+path = "src/bin/arithm_cycle.rs"
+
+[[bin]]
+name = "test_arithm_time"
+path = "src/bin/arithm_time.rs"
+
+[lib]
+name = "jubjublib"
+path = "src/lib.rs"
+
+[dependencies]
+num-bigint = "0.4"
+num-traits = "0.2"
+rand = "0.8"
+
+[dependencies.bitvec]
+version = "1"
+default-features = false
+
+[dependencies.bls12_381]
+version = "0.8"
+default-features = false
+
+[dependencies.ff]
+version = "0.13"
+default-features = false
+
+[dependencies.group]
+version = "0.13"
+default-features = false
+
+[dependencies.rand_core]
+version = "0.6"
+default-features = false
+
+[dependencies.subtle]
+version = "^2.2.1"
+default-features = false
+
+[dev-dependencies]
+criterion = "0.3"
+csv = ">= 1.0, < 1.2" # csv 1.2 has MSRV 1.60
+
+[dev-dependencies.rand_xorshift]
+version = "0.3"
+default-features = false
+
+[features]
+default = ["alloc", "bits"]
+alloc = ["ff/alloc", "group/alloc"]
+bits = ["ff/bits"]
